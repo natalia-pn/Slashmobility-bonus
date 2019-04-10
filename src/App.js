@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { debounce } from 'lodash';
 import handTap from './images/gesture-tap-hold.svg';
 import magnify from './images/magnify.svg';
 import heart from './images/heart.svg';
@@ -14,7 +15,7 @@ class App extends Component {
     }
   }
 
-  getSongs() {
+  getSongs = debounce(() => {
     const { searchName } = this.state;
     fetch(`https://itunes.apple.com/search?term=${searchName}`) 
     .then(response=> response.json())
@@ -23,7 +24,7 @@ class App extends Component {
       console.log(results)
       this.setState({resultsArray: results})
     })
-  }
+  }, 1000);
 
   getSearchName = (e) => {
     const nameValue = e.currentTarget.value;
@@ -31,6 +32,8 @@ class App extends Component {
 
     this.getSongs();
   }
+
+
 
   render() {
     const { resultsArray } = this.state;
