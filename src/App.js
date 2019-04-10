@@ -47,9 +47,9 @@ class App extends Component {
 
         <main className="Main-section">
           <ul className="Songs__list">
-              {resultsArray.map(item => {
+              {resultsArray.map((item, index) => {
                 return(
-                    <li className="Song__item" key={item.trackId}>
+                    <li className="Song__item" key={index}>
                       <img className="Song__sleeve" src={item.artworkUrl100} alt={item.collectionName}></img>
 
                       <p className="Song__title">{item.trackName}</p>
