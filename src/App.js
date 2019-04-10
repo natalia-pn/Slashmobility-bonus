@@ -23,6 +23,7 @@ class App extends Component {
 
   }
   render() {
+    const { resultsArray } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -35,6 +36,24 @@ class App extends Component {
           <img className="Heart" src={heart} alt="heart icon"></img>
           <span className="Counter">1</span>
         </header>
+
+        <main className="Main-section">
+          <ul className="Songs__list">
+              {resultsArray.map(item => {
+                return(
+                    <li className="Song__item" key={item.trackId}>
+                      <img className="Song__sleeve" src={item.artworkUrl100} alt={item.collectionName}></img>
+
+                      <p className="Song__title">{item.trackName}</p>
+
+                      <p className="Song__album">{item.collectionName}</p>
+
+                      <img className="Heart" src={heart} alt="heart icon"></img>
+                    </li>
+                )
+              })}
+          </ul>
+        </main>
       </div>
     );
   }
