@@ -9,28 +9,40 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchInput:'rihanna',
-      resultsArray: []
+      resultsArray: [],
+      searchName: ''
     }
+  }
 
-    fetch(`https://itunes.apple.com/search?term=${this.state.searchInput}`) 
+  getSongs() {
+    const { searchName } = this.state;
+    fetch(`https://itunes.apple.com/search?term=${searchName}`) 
     .then(response=> response.json())
     .then(data => {
       const results = data.results;
       console.log(results)
       this.setState({resultsArray: results})
     })
-
   }
+
+  getSearchName = (e) => {
+    const nameValue = e.currentTarget.value;
+    this.setState({searchName:nameValue})
+
+    this.getSongs();
+  }
+
   render() {
     const { resultsArray } = this.state;
+    const { getSearchName } = this;
+    
     return (
       <div className="App">
         <header className="App-header">
           <img className="Hand-tap" src={handTap} alt="hand tapping icon"></img>
           
           <label htmlFor="search-field" className="Search-field__label"></label>
-          <input type="search" id="search-field" className="Search-field__input" placeholder="Search"/>
+          <input type="search" id="search-field" className="Search-field__input" placeholder="Search" onKeyUp={getSearchName}/>
           <img className="Magnify" src={magnify} alt="magnifying glass icon"></img>
 
           <img className="Heart" src={heart} alt="heart icon"></img>
