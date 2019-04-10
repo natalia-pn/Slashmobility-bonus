@@ -2,27 +2,38 @@ import React, { Component } from 'react';
 import handTap from './images/gesture-tap-hold.svg';
 import magnify from './images/magnify.svg';
 import heart from './images/heart.svg';
-
-
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchInput:'rihanna',
+      resultsArray: []
+    }
+
+    fetch(`https://itunes.apple.com/search?term=${this.state.searchInput}`) 
+    .then(response=> response.json())
+    .then(data => {
+      const results = data.results;
+      console.log(results)
+      this.setState({resultsArray: results})
+    })
+
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img classname="Hand-tap" src={handTap} alt="hand tapping icon"></img>
+          <img className="Hand-tap" src={handTap} alt="hand tapping icon"></img>
           
           <label htmlFor="search-field" className="Search-field__label"></label>
           <input type="search" id="search-field" className="Search-field__input" placeholder="Search"/>
-          <img classname="Magnify" src={magnify} alt="magnifying glass icon"></img>
+          <img className="Magnify" src={magnify} alt="magnifying glass icon"></img>
 
-          <img classname="Heart" src={heart} alt="heart icon"></img>
+          <img className="Heart" src={heart} alt="heart icon"></img>
           <span className="Counter">1</span>
-
-
-
-          
         </header>
       </div>
     );
