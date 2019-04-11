@@ -5,6 +5,7 @@ import magnify from './images/magnify.svg';
 import heart from './images/heart.svg';
 import Header from './components/Header';
 import './App.css';
+import { fetchSongs } from './services/ApiRequest';
 
 class App extends Component {
   constructor(props) {
@@ -12,14 +13,14 @@ class App extends Component {
 
     this.state = {
       resultsArray: [],
-      searchName: ''
+      query: ''
     }
   }
 
   getSongs = debounce(() => {
-    const { searchName } = this.state;
-    fetch(`https://itunes.apple.com/search?term=${searchName}`) 
-    .then(response=> response.json())
+    const { query } = this.state;
+
+    fetchSongs(query)
     .then(data => {
       const results = data.results;
       console.log(results)
@@ -29,12 +30,10 @@ class App extends Component {
 
   getSearchName = (e) => {
     const nameValue = e.currentTarget.value;
-    this.setState({searchName:nameValue})
+    this.setState({query:nameValue})
 
     this.getSongs();
   }
-
-
 
   render() {
     const { resultsArray } = this.state;
@@ -52,15 +51,15 @@ class App extends Component {
           <ul className="Songs__list">
               {resultsArray.map((item, index) => {
                 return(
-                    <li className="Song__item" key={index}>
-                      <img className="Song__sleeve" src={item.artworkUrl100} alt={item.collectionName}></img>
+                  <li className="Song__item" key={index}>
+                    <img className="Song__sleeve" src={item.artworkUrl100} alt={item.collectionName}></img>
 
-                      <p className="Song__title">{item.trackName}</p>
+                    <p className="Song__title">{item.trackName}</p>
 
-                      <p className="Song__album">{item.collectionName}</p>
+                    <p className="Song__album">{item.collectionName}</p>
 
-                      <img className="Heart" src={heart} alt="heart icon"></img>
-                    </li>
+                    <img className="Heart" src={heart} alt="heart icon"></img>
+                  </li>
                 )
               })}
           </ul>
