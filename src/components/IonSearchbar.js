@@ -14,7 +14,6 @@ class IonSearchbar extends Component {
             </div>
         );
     }
-
 }
 
 IonSearchbar.propTypes = {

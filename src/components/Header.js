@@ -15,6 +15,7 @@ class Header extends Component {
                     magnify={magnify} />
                 
                 <img className="Heart" src={heart} alt="heart icon"></img>
+                
                 <span className="Counter">1</span>
             </header>
         );

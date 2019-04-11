@@ -6,6 +6,7 @@ import heart from './images/heart.svg';
 import Header from './components/Header';
 import './App.css';
 import { fetchSongs } from './services/ApiRequest';
+import SongCard from './components/SongCard';
 
 class App extends Component {
   constructor(props) {
@@ -51,15 +52,11 @@ class App extends Component {
           <ul className="Songs__list">
               {resultsArray.map((item, index) => {
                 return(
-                  <li className="Song__item" key={index}>
-                    <img className="Song__sleeve" src={item.artworkUrl100} alt={item.collectionName}></img>
-
-                    <p className="Song__title">{item.trackName}</p>
-
-                    <p className="Song__album">{item.collectionName}</p>
-
-                    <img className="Heart" src={heart} alt="heart icon"></img>
-                  </li>
+                  <SongCard key={index}
+                    image={item.artworkUrl100}
+                    trackName={item.trackName}
+                    collectionName={item.collectionName}
+                    heart={heart}/>
                 )
               })}
           </ul>
