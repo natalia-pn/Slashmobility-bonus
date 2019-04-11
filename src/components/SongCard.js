@@ -53,6 +53,7 @@ class SongCard extends Component {
                 <p className="Song__album">{collectionName}</p>
 
                 <button type="button" className="Favourites__heart" onClick={selectFavourites}><i class={`fas fa-heart ${favouritesClass}`} value={id}></i></button>
+                <i class="material-icons">favorite_border</i>
             </li>
         );
     }
