@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class SongCard extends Component {
     render() {
-        const { image, trackName, collectionName} = this.props;
+        const { image, trackName, collectionName, selectFavourites, favouritesClass, id} = this.props;
 
         return(
             <li className="Song__item">
@@ -13,7 +13,7 @@ class SongCard extends Component {
 
                 <p className="Song__album">{collectionName}</p>
 
-                <i class="fas fa-heart"></i>
+                <button type="button" className="Favourites__heart" onClick={selectFavourites}><i class={`fas fa-heart ${favouritesClass}`} value={id}></i></button>
             </li>
         );
     }

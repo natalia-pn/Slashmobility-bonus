@@ -13,7 +13,9 @@ class App extends Component {
 
     this.state = {
       resultsArray: [],
-      query: ''
+      query: '',
+      favouriteStatus: 'false',
+      favouritesClass: '',
     }
   }
 
@@ -35,9 +37,37 @@ class App extends Component {
     this.getSongs();
   }
 
+  toggleHeart = () => {
+    const { favouriteStatus} = this.state;
+
+    this.setState({
+      favouriteStatus:!favouriteStatus
+    })
+  }
+
+  selectFavourites = () => {
+    const { favouriteStatus} = this.state;
+    let favouriteclass;
+
+    this.toggleHeart();
+
+    if(favouriteStatus === false) {
+      favouriteclass = '';
+
+    } else {
+      favouriteclass = 'Favourite';
+    }
+
+    this.setState({
+      favouritesClass: favouriteclass
+    })
+
+    
+  }
+
   render() {
-    const { resultsArray } = this.state;
-    const { getSearchName } = this;
+    const { resultsArray, favouritesClass } = this.state;
+    const { getSearchName, selectFavourites } = this;
     
     return (
       <div className="App">
@@ -48,7 +78,9 @@ class App extends Component {
 
         <main className="Main-section">
           <SongsList    
-            resultsArray={resultsArray} />
+            resultsArray={resultsArray}
+            selectFavourites={selectFavourites} 
+            favouritesClass = {favouritesClass}/>
         </main>
       </div>
     );

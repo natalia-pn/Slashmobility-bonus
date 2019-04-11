@@ -4,7 +4,7 @@ import SongCard from './SongCard';
 
 class SongsList extends Component {
     render() {
-        const { resultsArray} = this.props;
+        const { resultsArray, selectFavourites, favouritesClass} = this.props;
 
         return(
             <ul className="Songs__list">
@@ -13,7 +13,10 @@ class SongsList extends Component {
                         <SongCard key={index}
                         image={item.artworkUrl100}
                         trackName={item.trackName}
-                        collectionName={item.collectionName} />
+                        collectionName={item.collectionName}
+                        selectFavourites={selectFavourites} 
+                        favouritesClass = {favouritesClass} 
+                        id={index}/>
                     )
                 })}
             </ul>
