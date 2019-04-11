@@ -27,6 +27,7 @@ class App extends Component {
       console.log(results)
       this.setState({resultsArray: results})
     })
+    this.setState({resultsArray: []})
   }, 1000);
 
   getSearchName = (e) => {
