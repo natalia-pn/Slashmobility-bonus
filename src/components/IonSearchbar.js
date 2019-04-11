@@ -8,7 +8,7 @@ class IonSearchbar extends Component {
         return(
             <div className="Search-bar">
                 <label htmlFor="search-field" className="Search-field__label"></label>
-                <input type="search" id="search-field" className="Search-field__input" placeholder="Search" onKeyUp={getSearchName}/>   
+                <input type="search" id="search-field" className="Search-field__input" placeholder="Search" onChange={getSearchName}/>   
 
                 <img className="Magnify" src={magnify} alt="magnifying glass icon"></img>
             </div>
