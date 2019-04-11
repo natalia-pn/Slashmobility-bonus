@@ -2,8 +2,49 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class SongCard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            favouriteStatus: 'false',
+            favouritesClass: '',
+        }
+    }
+
+    toggleHeart = () => {
+        const { favouriteStatus} = this.state;
+    
+        this.setState({
+          favouriteStatus:!favouriteStatus
+        })
+      }
+    
+      selectFavourites = () => {
+        const { favouriteStatus} = this.state;
+        let favouriteclass;
+    
+        this.toggleHeart();
+    
+        if(favouriteStatus === false) {
+          favouriteclass = '';
+    
+        } else {
+          favouriteclass = 'Favourite';
+        }
+    
+        this.setState({
+          favouritesClass: favouriteclass
+        })
+      }
+
+
+
     render() {
-        const { image, trackName, collectionName, selectFavourites, favouritesClass, id} = this.props;
+        const { image, trackName, collectionName, id} = this.props;
+        const { selectFavourites} = this;
+        const { favouritesClass} = this.state;
+
+        
 
         return(
             <li className="Song__item">
