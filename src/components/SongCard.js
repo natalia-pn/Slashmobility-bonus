@@ -27,24 +27,22 @@ class SongCard extends Component {
     
         if(favouriteStatus === false) {
           favouriteclass = '';
+          this.props.deductFavouritesTotal();
     
         } else {
           favouriteclass = 'Favourite';
+          this.props.addFavouritesTotal();
         }
-    
+
         this.setState({
           favouritesClass: favouriteclass
         })
       }
 
-
-
     render() {
         const { image, trackName, collectionName, id} = this.props;
         const { selectFavourites} = this;
         const { favouritesClass} = this.state;
-
-        
 
         return(
             <li className="Song__item">

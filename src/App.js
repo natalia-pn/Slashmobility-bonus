@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       resultsArray: [],
       query: '',
+      favouritesTotal: 0
     }
   }
 
@@ -35,20 +36,39 @@ class App extends Component {
     this.getSongs();
   }
 
+  addFavouritesTotal = () => {
+    this.setState(prevState => {
+      return {
+        favouritesTotal: prevState.favouritesTotal + 1
+      }
+    })
+  }
+
+  deductFavouritesTotal = () => {
+    this.setState(prevState => {
+      return {
+        favouritesTotal: prevState.favouritesTotal - 1
+      }
+    })
+  }
+
   render() {
-    const { resultsArray } = this.state;
-    const { getSearchName } = this;
+    const { resultsArray, favouritesTotal } = this.state;
+    const { getSearchName, addFavouritesTotal, deductFavouritesTotal } = this;
     
     return (
       <div className="App">
         <Header  
           handTap={handTap}
           getSearchName={getSearchName} 
-          magnify={magnify} />
+          magnify={magnify}
+          favouritesTotal={favouritesTotal} />
 
         <main className="Main-section">
           <SongsList    
-            resultsArray={resultsArray} />
+            resultsArray={resultsArray}
+            addFavouritesTotal={addFavouritesTotal}
+            deductFavouritesTotal={deductFavouritesTotal} />
         </main>
       </div>
     );

@@ -4,7 +4,7 @@ import IonSearchbar from './IonSearchbar';
 
 class Header extends Component {
     render() {
-        const { handTap, getSearchName, magnify} = this.props;
+        const { handTap, getSearchName, magnify, favouritesTotal} = this.props;
 
         return(
             <header className="App-header">
@@ -14,9 +14,9 @@ class Header extends Component {
                     getSearchName={getSearchName}
                     magnify={magnify} />
                 
-                <i class="fas fa-heart"></i>
+                <i className="fas fa-heart"></i>
                 
-                <span className="Counter">1</span>
+                <span className="Counter">{favouritesTotal}</span>
             </header>
         );
     }

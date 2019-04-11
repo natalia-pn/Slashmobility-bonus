@@ -4,7 +4,7 @@ import SongCard from './SongCard';
 
 class SongsList extends Component {
     render() {
-        const { resultsArray, selectFavourites, favouritesClass} = this.props;
+        const { resultsArray, selectFavourites, favouritesClass, addFavouritesTotal, deductFavouritesTotal} = this.props;
 
         return(
             <ul className="Songs__list">
@@ -16,7 +16,9 @@ class SongsList extends Component {
                         collectionName={item.collectionName}
                         selectFavourites={selectFavourites} 
                         favouritesClass = {favouritesClass} 
-                        id={index}/>
+                        id={index}
+                        addFavouritesTotal={addFavouritesTotal}
+                        deductFavouritesTotal={deductFavouritesTotal} />
                     )
                 })}
             </ul>
