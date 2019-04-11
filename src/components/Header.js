@@ -13,10 +13,11 @@ class Header extends Component {
                 <IonSearchbar 
                     getSearchName={getSearchName}
                     magnify={magnify} />
-                
-                <i className="fas fa-heart"></i>
-                
-                <span className="Counter">{favouritesTotal}</span>
+                <div className="Favourites-counter__container">
+                    <i className="fas fa-heart Header__heart"></i>
+                    
+                    <span className="Favourites__counter">{favouritesTotal}</span>
+                </div>
             </header>
         );
     }

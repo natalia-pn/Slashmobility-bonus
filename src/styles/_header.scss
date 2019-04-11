@@ -1,0 +1,33 @@
+.App-header {
+    height: 50px;
+    width: 100vw;
+    background-color: $cyan;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Favourites-counter__container {
+    color: $white;
+    margin-left: auto;
+    position: relative;
+}
+
+.Header__heart {
+    padding-right: 15px;
+}
+
+.Favourites__counter {
+    position: absolute;
+    right: 8px;
+    top: -8px;
+    background-color:$grey;
+    color: $white;
+    border-radius: 30px;
+    padding-top: 2px;
+    font-size: 10px;
+    width: 15px;
+    height: 14px;
+    text-align: center;
+}
+
