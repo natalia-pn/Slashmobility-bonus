@@ -4,7 +4,7 @@ import SongCard from './SongCard';
 
 class SongsList extends Component {
     render() {
-        const { resultsArray, heart} = this.props;
+        const { resultsArray} = this.props;
 
         return(
             <ul className="Songs__list">
@@ -13,8 +13,7 @@ class SongsList extends Component {
                         <SongCard key={index}
                         image={item.artworkUrl100}
                         trackName={item.trackName}
-                        collectionName={item.collectionName}
-                        heart={heart}/>
+                        collectionName={item.collectionName} />
                     )
                 })}
             </ul>
@@ -24,7 +23,6 @@ class SongsList extends Component {
 
 SongsList.propTypes = {
     resultsArray: PropTypes.array,
-    heart: PropTypes.string
 }
 
 export default SongsList;

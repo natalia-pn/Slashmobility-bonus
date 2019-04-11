@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class SongCard extends Component {
     render() {
-        const { image, trackName, collectionName, heart} = this.props;
+        const { image, trackName, collectionName} = this.props;
 
         return(
             <li className="Song__item">
@@ -13,7 +13,7 @@ class SongCard extends Component {
 
                 <p className="Song__album">{collectionName}</p>
 
-                <img className="Heart" src={heart} alt="heart icon"></img>
+                <i class="fas fa-heart"></i>
             </li>
         );
     }
@@ -23,7 +23,6 @@ SongCard.propTypes = {
     image: PropTypes.string,
     trackName: PropTypes.string,
     collectionName: PropTypes.string,
-    heart: PropTypes.string
 }
 
 export default SongCard;

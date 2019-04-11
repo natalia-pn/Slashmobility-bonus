@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import handTap from './images/gesture-tap-hold.svg';
 import magnify from './images/magnify.svg';
-import heart from './images/heart.svg';
 import Header from './components/Header';
-import './App.css';
+import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
 import SongsList from './components/SongsList';
 
@@ -45,13 +44,11 @@ class App extends Component {
         <Header  
           handTap={handTap}
           getSearchName={getSearchName} 
-          magnify={magnify}
-          heart={heart} />
+          magnify={magnify} />
 
         <main className="Main-section">
           <SongsList    
-            resultsArray={resultsArray}
-            heart={heart} />
+            resultsArray={resultsArray} />
         </main>
       </div>
     );
