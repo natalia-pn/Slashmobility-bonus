@@ -1,48 +1,58 @@
-.Favourite {
-    color: $cyan;
-}
-
 .Song__item {
-    width: 288px;
+    position: relative;
+    width: 250px;
+    height: 320px;
     background-color: $white;
-    display: flex;
-    flex-direction: column;
     margin: 10px;
-
-    @media all and (mon-width: 768px) {
-    height: 250px;
-    width: 190px;
-    font-family: 'Open Sans', sans-serif;
     list-style: none;
-}
+  
+    @media all and (min-width: 768px) {
+        width: 230px;
+        height: 360px;
+    }
 }
 
 .Song__sleeve {
-    width: 288px;
-    height: 112px;
+    width: 250px;
+    height: 132px;
 
     @media all and (min-width: 768px) {
-        width: 190px;
+        width: 230px;
+        height: 160px;
     }
+}
+
+.Card__info {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
 }
 
 .Favourites__heart {
     border: none;
     outline: none;
     background: none;
-    align-self: flex-end;
     color: $cyan;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .Song__title {
     padding-left: 10px;
-    font-size: 18px;
+    font-size: 14px;
+    
+    @media all and (min-width: 768px) {
+        font-size: 16px;
+    }
 }
 
 .Song__album {
     padding-left: 10px;
-    font-size: 14px;
+    font-size: 12px;
 
-
+    @media all and (min-width: 768px) {
+        font-size: 13px;
+    }
 }
 

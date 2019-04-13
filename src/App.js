@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
-import handTap from './images/gesture-tap-hold.svg';
-import magnify from './images/magnify.svg';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
@@ -24,7 +22,6 @@ class App extends Component {
     fetchSongs(query)
     .then(data => {
       const results = data.results;
-      console.log(results)
       this.setState({resultsArray: results})
     })
     this.setState({resultsArray: []})
@@ -60,9 +57,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header  
-          handTap={handTap}
           getSearchName={getSearchName} 
-          magnify={magnify}
           favouritesTotal={favouritesTotal} />
 
         <main className="Main-section">

@@ -16,7 +16,6 @@ class SongsList extends Component {
                         collectionName={item.collectionName}
                         selectFavourites={selectFavourites} 
                         favouritesClass = {favouritesClass} 
-                        id={index}
                         addFavouritesTotal={addFavouritesTotal}
                         deductFavouritesTotal={deductFavouritesTotal} />
                     )

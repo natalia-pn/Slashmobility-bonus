@@ -6,16 +6,6 @@
     flex-direction: row;
     align-items: center;
     position: fixed;  
-
-    @media all and (min-width: 768px) {
-    height: 50px;
-    width: 100vw;
-    background-color: $cyan;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: fixed;    
-    }
 }
 
 
@@ -24,11 +14,9 @@
     margin-left: 15px;
     margin-right: 26px;
     transform: rotate(200deg);
+
     @media all and (min-width: 768px) {
-        color: $white;
-        margin-left: 15px;
         margin-right: 86px;
-        transform: rotate(200deg);
     }
 }
 
@@ -36,17 +24,13 @@
     color: $white;
     margin-left: auto;
     position: relative;
-    @media all and (min-width: 768px) {
-    color: $white;
-    margin-left: auto;
-    position: relative;
-    }
 }
 
 .Header__heart {
     padding-right: 24px;
+
     @media all and (min-width: 768px) {
-    padding-right: 44px;
+        padding-right: 44px;
     }
 }
 
@@ -62,18 +46,9 @@
     width: 15px;
     height: 14px;
     text-align: center;
+    
     @media all and (min-width: 768px) {
-    position: absolute;
-    right: 38px;
-    top: -8px;
-    background-color:$grey;
-    color: $white;
-    border-radius: 30px;
-    padding-top: 2px;
-    font-size: 10px;
-    width: 15px;
-    height: 14px;
-    text-align: center;
+        right: 38px;
     }
 }
 
