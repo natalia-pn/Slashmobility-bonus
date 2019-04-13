@@ -7,7 +7,7 @@ class SongCard extends Component {
 
         this.state = {
             favouriteStatus: 'false',
-            favouritesIcon: 'favorite',
+            favouritesIcon: 'favorite_border',
         }
     }
 
@@ -26,11 +26,11 @@ class SongCard extends Component {
         this.toggleHeart();
     
         if(favouriteStatus === false) {
-          favouriteIcon = 'favorite';
+          favouriteIcon = 'favorite_border';
           this.props.deductFavouritesTotal();
     
         } else {
-          favouriteIcon = 'favorite_border';
+          favouriteIcon = 'favorite';
           this.props.addFavouritesTotal();
         }
 
