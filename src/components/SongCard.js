@@ -7,7 +7,7 @@ class SongCard extends Component {
 
         this.state = {
             favouriteStatus: 'false',
-            favouritesClass: '',
+            favouritesIcon: 'favorite',
         }
     }
 
@@ -21,28 +21,30 @@ class SongCard extends Component {
     
       selectFavourites = () => {
         const { favouriteStatus} = this.state;
-        let favouriteclass;
+        let favouriteIcon;
     
         this.toggleHeart();
     
         if(favouriteStatus === false) {
-          favouriteclass = '';
+          favouriteIcon = 'favorite';
           this.props.deductFavouritesTotal();
     
         } else {
-          favouriteclass = 'Favourite';
+          favouriteIcon = 'favorite_border';
           this.props.addFavouritesTotal();
         }
 
         this.setState({
-          favouritesClass: favouriteclass
+          favouritesIcon: favouriteIcon
         })
       }
+
+
 
     render() {
         const { image, trackName, collectionName, id} = this.props;
         const { selectFavourites} = this;
-        const { favouritesClass} = this.state;
+        const { favouritesIcon} = this.state;
 
         return(
             <li className="Song__item">
@@ -52,8 +54,8 @@ class SongCard extends Component {
 
                 <p className="Song__album">{collectionName}</p>
 
-                <button type="button" className="Favourites__heart" onClick={selectFavourites}><i class={`fas fa-heart ${favouritesClass}`} value={id}></i></button>
-                <i class="material-icons">favorite_border</i>
+                <button type="button" className="Favourites__heart" onClick={selectFavourites}value={id}><i className="material-icons">{favouritesIcon}</i></button>
+                
             </li>
         );
     }

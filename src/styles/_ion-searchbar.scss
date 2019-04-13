@@ -1,23 +1,38 @@
 
 .Search-field__input {
-    @media all and (min-width: 768px) {
     height: 26px;
     width: 186px;
     background-color: $dark-cyan;
     border: none;
     border-radius: -6px;
     outline: none;
+
+    @media all and (min-width: 768px) {
+        height: 26px;
+        width: 186px;
+        background-color: $dark-cyan;
+        border: none;
+        border-radius: -6px;
+        outline: none;
     }
+}
+
+.Search-field__input{
+    color: $white;
+    padding-left: 8px;
+
 }
 
 .Search-field__input::placeholder {
-    @media all and (min-width: 768px) {
     color: $white;
     padding-left: 8px;
-    }
 }
 
 .Magnify {
+    color: $white;
+    position: absolute;
+    margin: 2px 0 0 -29px;
+    font-size: 20px;
     @media all and (min-width: 768px) {
     color: $white;
     position: absolute;
