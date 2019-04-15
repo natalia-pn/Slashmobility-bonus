@@ -12,7 +12,7 @@
     width: 100vw;
     max-width: 1100px;
     display: flex;
-    align-items: center; 
+    align-items: center;  
 }
 
 .Hand-tapping {
@@ -24,6 +24,25 @@
     @media all and (min-width: 768px) {
         margin-right: 86px;
     }
+}
+
+.Menu {
+    width: 600px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+a {
+    text-decoration: none;
+}
+
+.Show-songs__link, .Show-albums__link {
+    color: $dim-grey;
+    margin-right: 25px;
+}
+
+.Show-songs__link.is-active, .Show-albums__link.is-active {
+    color: $white;
 }
 
 .Favourites-counter__container {

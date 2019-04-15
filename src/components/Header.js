@@ -15,10 +15,12 @@ class Header extends Component {
         
                     <IonSearchbar getSearchName={getSearchName} />
 
-                    <NavLink exact to="/" className="Show-songs__link" activeClassName="is-active"><p className="Show-songs">Songs</p>
-                    </NavLink>
-    
-                    <NavLink to="/AlbumsApp" className="Show-albums__link" activeClassName="is-active"><p className="Show-albums__title">Albums</p></NavLink>
+                    <div className="Menu">
+                        <NavLink exact to="/" className="Show-songs__link" activeClassName="is-active"><p className="Show-songs">Songs</p>
+                        </NavLink>
+        
+                        <NavLink to="/AlbumsApp" className="Show-albums__link" activeClassName="is-active"><p className="Show-albums__title">Albums</p></NavLink>
+                    </div>
 
                     <div className="Favourites-counter__container">
                         <i className="material-icons Header__heart">favorite</i>
