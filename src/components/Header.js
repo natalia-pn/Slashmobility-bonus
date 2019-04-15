@@ -9,14 +9,16 @@ class Header extends Component {
 
         return(
             <header className="App-header">
-                <i className="material-icons Hand-tapping">touch_app</i>
-    
-                <IonSearchbar getSearchName={getSearchName} />
-                
-                <div className="Favourites-counter__container">
-                    <i className="material-icons Header__heart">favorite</i>
+                <div className="Header__content">
+                    <i className="material-icons Hand-tapping">touch_app</i>
+        
+                    <IonSearchbar getSearchName={getSearchName} />
                     
-                    <span className="Favourites__counter">{favouritesTotal}</span>
+                    <div className="Favourites-counter__container">
+                        <i className="material-icons Header__heart">favorite</i>
+                        
+                        <span className="Favourites__counter">{favouritesTotal}</span>
+                    </div>
                 </div>
             </header>
         );
