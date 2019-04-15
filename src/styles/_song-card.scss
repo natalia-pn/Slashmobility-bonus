@@ -5,6 +5,8 @@
     background-color: $white;
     margin: 10px;
     list-style: none;
+    border: solid 1px #D3D3D3;
+    border-radius: 0 0 5px 5px;
   
     @media all and (min-width: 768px) {
         width: 230px;
