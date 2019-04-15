@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { debounce } from 'lodash';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
 import SongsList from './components/SongsList';
+import AlbumsApp from './components/AlbumsApp';
 
 class App extends Component {
   constructor(props) {
@@ -57,14 +59,27 @@ class App extends Component {
     return (
       <div className="App">
         <Header  
-          getSearchName={getSearchName} 
-          favouritesTotal={favouritesTotal} />
+            getSearchName={getSearchName} 
+            favouritesTotal={favouritesTotal} />
 
         <main className="Main-section">
-          <SongsList    
-            resultsArray={resultsArray}
-            addFavouritesTotal={addFavouritesTotal}
-            deductFavouritesTotal={deductFavouritesTotal} />
+          <Switch>
+              <Fragment>
+                <Route exact path="/" render={()=>(
+                  <SongsList    
+                  resultsArray={resultsArray}
+                  addFavouritesTotal={addFavouritesTotal}
+                  deductFavouritesTotal={deductFavouritesTotal} />    
+                )}/>
+                
+                <Route path="/AlbumsApp" render={()=>(
+                <AlbumsApp 
+                  resultsArray={resultsArray}
+                  addFavouritesTotal={addFavouritesTotal}
+                  deductFavouritesTotal={deductFavouritesTotal} />
+                )}/>
+              </Fragment>
+            </Switch>
         </main>
       </div>
     );

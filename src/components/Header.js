@@ -1,4 +1,5 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import IonSearchbar from './IonSearchbar';
 import PropTypes from "prop-types";
 
@@ -13,7 +14,12 @@ class Header extends Component {
                     <i className="material-icons Hand-tapping">touch_app</i>
         
                     <IonSearchbar getSearchName={getSearchName} />
-                    
+
+                    <NavLink exact to="/" className="Show-songs__link" activeClassName="is-active"><p className="Show-songs">Songs</p>
+                    </NavLink>
+    
+                    <NavLink to="/AlbumsApp" className="Show-albums__link" activeClassName="is-active"><p className="Show-albums__title">Albums</p></NavLink>
+
                     <div className="Favourites-counter__container">
                         <i className="material-icons Header__heart">favorite</i>
                         
