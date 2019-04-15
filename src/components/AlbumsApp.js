@@ -4,8 +4,7 @@ import AlbumsList from './AlbumsList';
 class AlbumsApp extends Component {
   
   render() {
-    const { resultsArray } = this.props;
-    const { addFavouritesTotal, deductFavouritesTotal } = this;
+    const { resultsArray, addFavouritesTotal, deductFavouritesTotal } = this.props;
     
     return (
       <div className="App">
