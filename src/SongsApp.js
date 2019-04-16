@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { debounce, cloneDeep  } from 'lodash';
-// import * as  from 'lodash/cloneDeep';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
@@ -26,14 +25,21 @@ class App extends Component {
     fetchSongs(query)
     .then(data => {
       const newData = data.results;
+
+      //Add the property favouriteSongStatus to newData array:
+      const songsArray = newData.map(object => {return {...object, favouriteSongStatus: false }})
+      
+      //Create a new deep copy of the array with Lodash;
       const deepcloned = cloneDeep(newData)
 
-      const songsArray = newData.map(object => {return {...object, favouriteSongStatus: false }})
+      //Return an array of objects which don't contain the collectionName value repeated;
+      //reduce goes through the array, and for each element it calls the provided function with accumulator (the return value of the previous call) and the current element. concat adds the current element to the accumulator if it doesn't exist there yet. find checks if the current element exists in the accumulator by comparing the collectionName properties:
+      const uniqueValues = deepcloned.reduce((acc, x) =>
+      acc.concat(acc.find(y => y.collectionName === x.collectionName) ? [] : [x]), []);
 
-      const albumsArray = deepcloned.map((object, index) => {return {...object, id: index, favouriteAlbumStatus: false }})
+      const newAlbumsArray = uniqueValues.map((object, index) => {return {...object, id: index, favouriteAlbumStatus: false }})
 
-  
-      this.setState({songsArray: songsArray, albumsArray: albumsArray})
+      this.setState({songsArray: songsArray, albumsArray: newAlbumsArray})
     })
 
     this.setState({songsArray: [], albumsArray: [] })
@@ -69,12 +75,8 @@ class App extends Component {
     });
 
     const newAlbumsArray = albumsArray.map(item => {
-      
-      
       if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === false) {
         this.addFavouritesTotal();
-        console.log(item.id)
-        console.log(item.favouriteAlbumStatus)
 
         return {
           ...item, favouriteAlbumStatus: true
@@ -82,8 +84,6 @@ class App extends Component {
         
       } else if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === true) {
         this.deductFavouritesTotal();
-        console.log(item.id)
-        console.log(item.favouriteAlbumStatus)
 
         return {
           ...item, favouriteAlbumStatus: false
