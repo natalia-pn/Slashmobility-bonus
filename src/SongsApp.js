@@ -15,7 +15,6 @@ class App extends Component {
       songsArray: [],
       albumsArray: [],
       query: '',
-      favouritesTotal: 0
     }
   }
 
@@ -58,15 +57,12 @@ class App extends Component {
 
     const newSongsArray = songsArray.map(item => {
       if(item.trackId === parseInt(buttonValue) && item.favouriteSongStatus === false) {
-        this.addFavouritesTotal();
-
         return {
           ...item, favouriteSongStatus: true
         };
 
         } 
       else if (item.trackId  === parseInt(buttonValue) && item.favouriteSongStatus === true) {
-        this.deductFavouritesTotal();
         return {
           ...item, favouriteSongStatus: false
         }
@@ -76,15 +72,11 @@ class App extends Component {
 
     const newAlbumsArray = albumsArray.map(item => {
       if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === false) {
-        this.addFavouritesTotal();
-
         return {
           ...item, favouriteAlbumStatus: true
         }
         
       } else if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === true) {
-        this.deductFavouritesTotal();
-
         return {
           ...item, favouriteAlbumStatus: false
         }
@@ -95,26 +87,19 @@ class App extends Component {
     this.setState({songsArray : newSongsArray, albumsArray: newAlbumsArray});
   }
 
-  addFavouritesTotal = () => {
-    this.setState(prevState => {
-      return {
-        favouritesTotal: prevState.favouritesTotal + 1
-      }
-    })
-  }
-
-  deductFavouritesTotal = () => {
-    this.setState(prevState => {
-      return {
-        favouritesTotal: prevState.favouritesTotal - 1
-      }
-    })
-  }
-
   render() {
-    const { songsArray, albumsArray, favouritesTotal } = this.state;
+    const { songsArray, albumsArray } = this.state;
     const { getSearchName, selectFavourites } = this;
-    
+
+    // Get favourite songs' total:
+    const favouriteSongsTotal = songsArray.filter(item => item.favouriteSongStatus === true).length;
+
+     // Get favourite albums' total:
+     const favouriteAlbumsTotal = albumsArray.filter(item => item.favouriteAlbumStatus === true).length;
+
+     const favouritesTotal = favouriteSongsTotal + favouriteAlbumsTotal;
+
+
     return (
       <div className="App">
         <Header  
