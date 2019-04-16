@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mdi/font": "^3.5.95",
+    "lodash": "^4.17.11",
     "material-design-icons": "^3.0.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",

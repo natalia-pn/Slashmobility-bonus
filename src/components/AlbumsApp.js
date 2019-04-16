@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import AlbumsList from './AlbumsList';
 
 class AlbumsApp extends Component {
@@ -7,13 +7,11 @@ class AlbumsApp extends Component {
     const { albumsArray, selectFavourites } = this.props;
     
     return (
-      <div className="App">
-        <main className="Main-section">
-          <AlbumsList    
-            albumsArray={albumsArray}
-            selectFavourites={selectFavourites} />
-        </main>
-      </div>
+      <Fragment>
+        <AlbumsList    
+          albumsArray={albumsArray}
+          selectFavourites={selectFavourites} />
+      </Fragment>
     );
   }
 }

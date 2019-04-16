@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { debounce  } from 'lodash';
-import * as cloneDeep from 'lodash/cloneDeep';
+import { debounce, cloneDeep  } from 'lodash';
+// import * as  from 'lodash/cloneDeep';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
@@ -114,9 +114,6 @@ class App extends Component {
   render() {
     const { songsArray, albumsArray, favouritesTotal } = this.state;
     const { getSearchName, selectFavourites } = this;
-
-    console.log(songsArray)
-    console.log(albumsArray)
     
     return (
       <div className="App">
