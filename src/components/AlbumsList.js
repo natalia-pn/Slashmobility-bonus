@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import AlbumCard from './SongCard';
+import AlbumCard from './AlbumCard';
 
 class AlbumsList extends Component {
     render() {
-        const { resultsArray, addFavouritesTotal, deductFavouritesTotal} = this.props;
+        const { albumsArray, selectFavourites } = this.props;
 
         return(
             <ul className="Albums__list">
-                {resultsArray.map((item, index) => {
+                {albumsArray.map(item => {
                     return(
-                        <AlbumCard key={index}
+                        <AlbumCard key={item.id}
+                        id={item.id}
                         image={item.artworkUrl100}
                         collectionName={item.collectionName}
-                        addFavouritesTotal={addFavouritesTotal}
-                        deductFavouritesTotal={deductFavouritesTotal} />
+                        selectFavourites={selectFavourites}
+                        favouriteAlbumStatus={item.favouriteAlbumStatus}  />
                     )
                 })}
             </ul>

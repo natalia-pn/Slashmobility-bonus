@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { debounce } from 'lodash';
+import { debounce  } from 'lodash';
+import * as cloneDeep from 'lodash/cloneDeep';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
@@ -12,7 +13,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      resultsArray: [],
+      songsArray: [],
+      albumsArray: [],
       query: '',
       favouritesTotal: 0
     }
@@ -23,9 +25,17 @@ class App extends Component {
 
     fetchSongs(query)
     .then(data => {
-      const results = data.results;
-      this.setState({resultsArray: results})
+      const newData = data.results;
+      const deepcloned = cloneDeep(newData)
+
+      const songsArray = newData.map(object => {return {...object, favouriteSongStatus: false }})
+
+      const albumsArray = deepcloned.map((object, index) => {return {...object, id: index, favouriteAlbumStatus: false }})
+
+  
+      this.setState({songsArray: songsArray, albumsArray: albumsArray})
     })
+
     this.setState({resultsArray: []})
   }, 1000);
 
@@ -34,6 +44,55 @@ class App extends Component {
     this.setState({query:nameValue})
 
     this.getSongs();
+  }
+
+  selectFavourites = (e) => {
+    const { songsArray, albumsArray } = this.state;
+    const buttonValue = e.currentTarget.value;
+
+    const newSongsArray = songsArray.map(item => {
+      if(item.trackId === parseInt(buttonValue) && item.favouriteSongStatus === false) {
+        this.addFavouritesTotal();
+
+        return {
+          ...item, favouriteSongStatus: true
+        };
+
+        } 
+      else if (item.trackId  === parseInt(buttonValue) && item.favouriteSongStatus === true) {
+        this.deductFavouritesTotal();
+        return {
+          ...item, favouriteSongStatus: false
+        }
+      } return item;
+
+    });
+
+    const newAlbumsArray = albumsArray.map(item => {
+      
+      
+      if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === false) {
+        this.addFavouritesTotal();
+        console.log(item.id)
+        console.log(item.favouriteAlbumStatus)
+
+        return {
+          ...item, favouriteAlbumStatus: true
+        }
+        
+      } else if (item.id === parseInt(buttonValue) && item.favouriteAlbumStatus === true) {
+        this.deductFavouritesTotal();
+        console.log(item.id)
+        console.log(item.favouriteAlbumStatus)
+
+        return {
+          ...item, favouriteAlbumStatus: false
+        }
+      } 
+      return item;
+    });
+    
+    this.setState({songsArray : newSongsArray, albumsArray: newAlbumsArray});
   }
 
   addFavouritesTotal = () => {
@@ -53,8 +112,11 @@ class App extends Component {
   }
 
   render() {
-    const { resultsArray, favouritesTotal } = this.state;
-    const { getSearchName, addFavouritesTotal, deductFavouritesTotal } = this;
+    const { songsArray, albumsArray, favouritesTotal } = this.state;
+    const { getSearchName, selectFavourites } = this;
+
+    console.log(songsArray)
+    console.log(albumsArray)
     
     return (
       <div className="App">
@@ -67,16 +129,14 @@ class App extends Component {
               <Fragment>
                 <Route exact path="/" render={()=>(
                   <SongsList    
-                  resultsArray={resultsArray}
-                  addFavouritesTotal={addFavouritesTotal}
-                  deductFavouritesTotal={deductFavouritesTotal} />    
+                  songsArray={songsArray}
+                  selectFavourites={selectFavourites} />      
                 )}/>
                 
                 <Route path="/AlbumsApp" render={()=>(
                 <AlbumsApp 
-                  resultsArray={resultsArray}
-                  addFavouritesTotal={addFavouritesTotal}
-                  deductFavouritesTotal={deductFavouritesTotal} />
+                  albumsArray={albumsArray}
+                  selectFavourites={selectFavourites} />
                 )}/>
               </Fragment>
             </Switch>

@@ -2,47 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class SongCard extends Component {
-  constructor(props) {
-      super(props);
-
-      this.state = {
-        favouriteStatus: 'false',
-        favouritesIcon: 'favorite_border',
-      }
-  }
-
-  toggleHeart = () => {
-      const { favouriteStatus} = this.state;
   
-      this.setState({
-        favouriteStatus:!favouriteStatus
-      })
-    }
-  
-    selectFavourites = () => {
-      const { favouriteStatus} = this.state;
-      let favouriteIcon;
-  
-      this.toggleHeart();
-  
-      if(favouriteStatus === false) {
-        favouriteIcon = 'favorite_border';
-        this.props.deductFavouritesTotal();
-  
-      } else {
-        favouriteIcon = 'favorite';
-        this.props.addFavouritesTotal();
-      }
-
-      this.setState({
-        favouritesIcon: favouriteIcon
-      })
-    }
     
     render() {
-      const { image, trackName, collectionName } = this.props;
-      const { selectFavourites} = this;
-      const { favouritesIcon} = this.state;
+      const { image, trackName, collectionName, favouriteSongStatus, id, selectFavourites } = this.props;
+
+      const favouriteIcon = favouriteSongStatus === true? "favorite" : "favorite_border";
 
       return(
         <li className="Song__item">
@@ -54,7 +19,7 @@ class SongCard extends Component {
               <p className="Song__album">{collectionName}</p>
             </div> 
 
-            <button type="button" className="Favourites__heart" onClick={selectFavourites}><i className="material-icons">{favouritesIcon}</i></button>
+            <button type="button" className="Favourites__heart" value={id} onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
         </li>
       );
     }
@@ -64,8 +29,9 @@ SongCard.propTypes = {
   image: PropTypes.string,
   trackName: PropTypes.string,
   collectionName: PropTypes.string,
-  deductFavouritesTotal: PropTypes.func,
-  addFavouritesTotal: PropTypes.func
+  selectFavourites: PropTypes.func,
+  id: PropTypes.number,
+  favouriteSongStatus: PropTypes.bool
 }
 
 export default SongCard;
