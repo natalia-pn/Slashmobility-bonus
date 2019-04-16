@@ -36,7 +36,7 @@ class App extends Component {
       this.setState({songsArray: songsArray, albumsArray: albumsArray})
     })
 
-    this.setState({resultsArray: []})
+    this.setState({songsArray: [], albumsArray: [] })
   }, 1000);
 
   getSearchName = (e) => {
