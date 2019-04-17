@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 class albumCard extends Component {
     render() {
-      const { image, collectionName, selectFavourites, favouriteAlbumStatus, id } = this.props;
+      const { image, collectionName, selectFavourites, favouriteStatus, id } = this.props;
 
-      const favouriteIcon = favouriteAlbumStatus === true ? "favorite" : "favorite_border";
+      const favouriteIcon = favouriteStatus === true ? "favorite" : "favorite_border";
  
 
       return(

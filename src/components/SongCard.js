@@ -5,9 +5,9 @@ class SongCard extends Component {
   
     
     render() {
-      const { image, trackName, collectionName, favouriteSongStatus, id, selectFavourites } = this.props;
+      const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
 
-      const favouriteIcon = favouriteSongStatus === true? "favorite" : "favorite_border";
+      const favouriteIcon = favouriteStatus === true? "favorite" : "favorite_border";
 
       return(
         <li className="Song__item">

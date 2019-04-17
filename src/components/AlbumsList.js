@@ -15,7 +15,7 @@ class AlbumsList extends Component {
                         image={item.artworkUrl100}
                         collectionName={item.collectionName}
                         selectFavourites={selectFavourites}
-                        favouriteAlbumStatus={item.favouriteAlbumStatus}  />
+                        favouriteStatus={item.favouriteStatus}  />
                     )
                 })}
             </ul>

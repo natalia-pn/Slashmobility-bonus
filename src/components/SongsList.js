@@ -16,7 +16,7 @@ class SongsList extends Component {
                         trackName={item.trackName}
                         collectionName={item.collectionName}
                         selectFavourites={selectFavourites} 
-                        favouriteSongStatus={item.favouriteSongStatus} />
+                        favouriteStatus={item.favouriteStatus} />
                     )
                 })}
             </ul>
